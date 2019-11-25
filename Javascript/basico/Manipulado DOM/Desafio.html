@@ -1,0 +1,95 @@
+<html>
+    <head>
+        <title>Cursos Javascript - DESAFIO</title>
+    </head>
+    <body>
+             
+
+    </body>
+   
+    <script>
+        //EXERCICIO 1
+
+        var $body = document.querySelector('body');
+        var buttonElement = document.createElement('button');
+        var textButtonElement = document.createTextNode('Clique para add um box');
+        buttonElement.appendChild(textButtonElement);
+        buttonElement.onclick = function(){
+            var box = document.createElement('div');
+            box.className = 'box';
+            box.style.width = 100;
+            box.style.height = 100;
+            box.style.backgroundColor = '#f00';
+            //EXERCICIO 2 - INICIO
+            box.onmouseover = function(){
+                box.style.backgroundColor = getRandomColor();
+            }
+            //EXERCICIO 2 - FIM
+
+            var linha = document.createElement('br');
+            $body.appendChild(box);
+            $body.appendChild(linha);
+
+            
+        }
+        $body.appendChild(buttonElement);
+
+        //EXERCICIO 2 - INICIO
+        function getRandomColor() {
+            var letters = "0123456789ABCDEF";
+            var color = "#";
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+        //EXERCICIO 2 - FIM
+
+        //EXERCICIO 3 - INICIO
+        var $ul = document.createElement('ul');
+        $body.appendChild($ul);
+        var ulElement = document.querySelector('ul');
+
+        var nomes = ['Diego', 'Gabriel', 'Lucas'];
+        for (var i = 0; i < nomes.length ;i++ ) {
+            addNomeNoElementUl(nomes[i]);
+        }  
+        function addNomeNoElementUl(nome) {
+            if(nome === undefined || nome === null || nome === '') return;
+            var $li = document.createElement('li');
+            var liTextElement=document.createTextNode(nome);
+            $li.appendChild(liTextElement);
+            ulElement.appendChild($li);
+        }
+        //EXERCICIO 3 - FIM
+
+        //EXERCICIO 4 - INICIO
+        var $input = document.createElement('input');
+        $input.setAttribute('type','text');
+        $input.setAttribute('name','nome');
+        $body.appendChild($input);
+        var inputElement = document.querySelector('input[name="nome"]');
+        inputElement.focus();
+
+        var $button = document.createElement('button');
+        var buttonElementText = document.createTextNode('Adicionar Nome');
+        $button.appendChild(buttonElementText);
+        $button.onclick = function(){
+
+            if(inputElement.value === '')
+            {
+                alert('Nome deve ser informado para Adicionar na lista');   
+                inputElement.focus();
+                return;
+            }
+
+            nomes.push(inputElement.value);
+            addNomeNoElementUl(inputElement.value);
+            inputElement.value = '';
+            inputElement.focus();
+        };
+        $body.appendChild($button);
+
+        //EXERCICIO 4 - FIM
+    </script>
+</html>

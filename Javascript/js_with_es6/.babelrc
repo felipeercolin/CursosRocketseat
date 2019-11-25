@@ -1,0 +1,7 @@
+{
+    "presets": ["@babel/preset-env"],//entender o browser e converter as funcionalidades ES6+ confirme o navegador usado
+    "plugins": [
+        "@babel/plugin-proposal-object-rest-spread",
+        "@babel/plugin-transform-async-to-generator"
+    ]
+}

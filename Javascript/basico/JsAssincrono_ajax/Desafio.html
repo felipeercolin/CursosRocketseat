@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <title>Cursos Javascript - Desafio</title>
+    </head>
+    <body>
+        <!-- EXERCICIO 2 - INICIO -->
+        <input type="text" name="user" />
+        <button onclick="">Pesquisar</button>
+
+        <!-- EXERCICIO 2 - FIM -->
+
+            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+            <script>
+                //EXERCICIO 1 - INICIO
+                function checarIdade(idade){
+                    return new Promise(function(resolve, reject){
+                        if(idade >= 18)
+                            resolve();
+                        else reject();
+                    });
+                }
+
+                checarIdade(18).then(function(){
+                    console.log('Maior que 18 anos');
+                }).catch(function(){
+                    console.warn('Menor que 18 anos');
+                });
+                //EXERCICIO 1 - FIM
+                //EXERCICIO 2 - INICIO
+                var bodyElement = document.querySelector('body');
+                bodyElement.appendChild(document.createElement('ul'));
+                var ulElement = document.querySelector('ul');
+                
+                var inputElement = document.querySelector('input[name="user"]');
+                var buttonElement = document.querySelector('button');
+                buttonElement.onclick = function(){
+                    limparLista();
+                    
+                    var user = inputElement.value;
+                    if(user === undefined || user === null || user === '') {
+                        alert('Informe o Usuario para Pesquiar');
+                        inputElement.focus();
+                    }
+                    
+                    addCarregando();//EXERCICIO 3
+                    axios.get('https://api.github.com/users/'+user+'/repos')
+                         .then(function(response) {
+                            limparLista();//EXERCICIO 3
+                            if(response.data.lenght <= 0)
+                            {
+                                alert('nenhum registro encontrado')
+                                return;
+                            }
+
+                            for(repo of response.data){
+                                addItemLista(repo.name);
+                            }
+                         })
+                         .catch(function(error){
+                            limparLista();//EXERCICIO 3
+                            alert('usuario nao encontrado')
+                         });
+                };
+
+                function addItemLista(item) {
+                    var liElement = document.createElement('li');
+                    var repoText = document.createTextNode(item);
+                    liElement.appendChild(repoText);
+                    ulElement.appendChild(liElement);
+                }
+                //EXERCICIO 2 - FIM
+
+                //EXERCICIO 3 - INICIO
+                function addCarregando() {
+                    addItemLista('Carregando...');
+                }
+                function limparLista() {
+                    ulElement.innerHTML = '';
+                }
+                //EXERCICIO 3 - FIM
+
+            </script>
+    </body>
+</html>

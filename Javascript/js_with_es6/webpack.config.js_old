@@ -1,0 +1,26 @@
+module.exports = {
+    entry: './WebPackServer/main.js',
+    output: {
+        path : __dirname + '/WebPackServer',
+        filename : 'bundle.js'
+    },
+    // entry2: './WebPackServer/WebPackDevServer/src/main.js',
+    // output2: {
+    //     path : __dirname + '/WebPackServer/WebPackDevServer/public',
+    //     filename : 'bundle.js'
+    // },
+    devServer:{
+        contentBase: __dirname + '/WebPackServer/WebPackDevServer/public'
+    },
+    module:{
+        roles:[
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                }
+            }
+        ]
+    }
+};

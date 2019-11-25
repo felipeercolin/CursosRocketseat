@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <title>Cursos Javascript</title>
+    </head>
+    <body>
+        <div id = "app">
+            <!-- <button onclick="mostraAlerta()">Me pressione</button>
+            <input onkeypress="mostraAlerta()" /> -->
+
+            <input type="text" name="nome" id="nome" class="nome" />
+            <!-- <input type="text" name="nome" id="nome2" /> -->
+            <button class="botao">Adicionar</button>
+
+            <div class="box"></div>
+        </div>
+
+        <!-- EVENTOS INLINE -->
+        <script>
+            // function mostraAlerta(){
+            //     alert('Botao foi clicado');
+            // }
+        </script>
+
+        <!-- TRABALHANDO COM A DOM -->
+        <script>
+            var inputElement = document.getElementById('nome');
+            //console.log(inputElement);
+
+            //inputElement = document.getElementsByTagName('input')[0];
+            //console.log(inputElement);
+
+            //inputElement = document.getElementsByClassName('nome');
+            //console.log(inputElement);
+
+            //somente 1 se houver mais de 1
+            //inputElement = document.querySelector('input');
+            //console.log(inputElement);
+
+            //lista com todos os elementos
+            //inputElementList = document.querySelectorAll('input');
+            //console.log(inputElement);
+
+            var btnElement = document.querySelector('button.botao');
+            btnElement.onclick = function(){
+                //alert('Botao clicado');
+                alert(inputElement.value);
+            }
+        
+        </script>
+
+        <!-- LIDANDO COM ELEMENTOS -->
+        <script> 
+            var linkElement = document.createElement('a');
+            linkElement.setAttribute('href', 'https://www.google.com.br');
+            linkElement.setAttribute('title', 'Site do Google');
+
+            var textElement = document.createTextNode('Acessar o site google.com');
+            linkElement.appendChild(textElement);
+
+             var containerElement = document.querySelector('#app');
+             containerElement.appendChild(linkElement);
+
+             var inputElement = document.querySelector('#nome');
+             //Remove o elemento
+             //containerElement.removeChild(inputElement);
+        </script>
+
+        <!-- ALTERANDO ESTILOS -->
+        <script>
+            var boxElement = document.querySelector('.box');
+            boxElement.style.width = 100;
+            boxElement.style.height = 100;
+            boxElement.style.backgroundColor = '#f00';
+
+
+        </script>
+
+    </body>
+</html>
